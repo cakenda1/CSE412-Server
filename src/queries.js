@@ -9,7 +9,7 @@ const pool = new Pool({
 
 const getGas = (request, response) => {
     // pool.query('SELECT cost FROM Gas, state WHERE Gas.stateID = state.stateID AND type = \'REGULAR\'', (error, results) => {
-        pool.query('SELECT * FROM Gas, state WHERE Gas.stateID = state.stateID', (error, results) => {
+        pool.query('SELECT cost, state.stateID, state.name FROM Gas, state WHERE Gas.stateID = state.stateID AND Gas.type LIKE \'Regular%\'', (error, results) => {
       if (error) {
         throw error
       }
