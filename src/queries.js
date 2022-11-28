@@ -9,7 +9,7 @@ const pool = new Pool({
 
 const getGas = (request, response) => {
     // pool.query('SELECT cost FROM Gas, state WHERE Gas.stateID = state.stateID AND type = \'REGULAR\'', (error, results) => {
-        pool.query('SELECT cost, state.stateID, state.name FROM Gas, state WHERE Gas.stateID = state.stateID AND Gas.type LIKE \'Regular%\'', (error, results) => {
+        pool.query('SELECT Gas.cost gasCost, state.stateID, state.name, Groceries.cost groceriesCost, Rent.cost rentCost FROM Gas, state, Groceries, Rent WHERE Gas.stateID = state.stateID AND Gas.type LIKE \'Regular%\' AND Groceries.stateID = state.stateID AND Rent.stateID = state.stateID', (error, results) => {
       if (error) {
         throw error
       }
@@ -18,7 +18,7 @@ const getGas = (request, response) => {
   }
 
   const getGroceries = (request, response) => {
-    pool.query('SELECT cost FROM Groceries, state WHERE Groceries.stateID = State.stateID', (error, results) => {
+    pool.query('SELECT SUM(Gas.cost + Rent.cost + Groceries.cost) AS costsum, state.name FROM Gas, state, Groceries, Rent WHERE Gas.stateID = state.stateID AND Gas.type LIKE \'Regular%\' AND Groceries.stateID = state.stateID AND Rent.stateID = state.stateID GROUP BY state.stateID', (error, results) => {
       if (error) {
         throw error
       }
@@ -27,7 +27,7 @@ const getGas = (request, response) => {
   }
 
   const getRent = (request, response) => {
-    pool.query('SELECT cost FROM Rent, state WHERE Rent.stateID = State.stateID', (error, results) => {
+    pool.query('SELECT cost,  state.stateID, state.name FROM Rent, state WHERE Rent.stateID = State.stateID', (error, results) => {
       if (error) {
         throw error
       }
