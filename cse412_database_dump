@@ -1,0 +1,738 @@
+--
+-- PostgreSQL database cluster dump
+--
+
+-- Started on 2022-11-28 18:52:57
+
+SET default_transaction_read_only = off;
+
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+
+--
+-- Roles
+--
+
+CREATE ROLE postgres;
+ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:Yl097D3RX39q6/IPf+XLZw==$DEZEFH6fa5oXh5A4wghyiuSXjzrBl2UxGYn3wlGs0Gw=:GPt3uorO1TlYwRa7mqLF8Baw8ATbnar+qecrYozko94=';
+
+--
+-- User Configurations
+--
+
+
+
+
+
+
+
+
+--
+-- Databases
+--
+
+--
+-- Database "template1" dump
+--
+
+\connect template1
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.0
+-- Dumped by pg_dump version 15.0
+
+-- Started on 2022-11-28 18:52:58
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+-- Completed on 2022-11-28 18:52:58
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- Database "CSE412" dump
+--
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.0
+-- Dumped by pg_dump version 15.0
+
+-- Started on 2022-11-28 18:52:58
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3350 (class 1262 OID 16398)
+-- Name: CSE412; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE "CSE412" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE_PROVIDER = libc LOCALE = 'English_United States.1252';
+
+
+ALTER DATABASE "CSE412" OWNER TO postgres;
+
+\connect "CSE412"
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 218 (class 1259 OID 16419)
+-- Name: gas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.gas (
+    stateid character(2) NOT NULL,
+    cost double precision,
+    type character(10) NOT NULL
+);
+
+
+ALTER TABLE public.gas OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 16414)
+-- Name: groceries; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.groceries (
+    stateid character(2) NOT NULL,
+    cost double precision
+);
+
+
+ALTER TABLE public.groceries OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 16404)
+-- Name: household; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.household (
+    stateid character(2) NOT NULL,
+    averagesize double precision
+);
+
+
+ALTER TABLE public.household OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16409)
+-- Name: rent; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rent (
+    stateid character(2) NOT NULL,
+    cost double precision
+);
+
+
+ALTER TABLE public.rent OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16399)
+-- Name: state; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.state (
+    stateid character(2) NOT NULL,
+    name text,
+    population integer,
+    populationdensity integer
+);
+
+
+ALTER TABLE public.state OWNER TO postgres;
+
+--
+-- TOC entry 3344 (class 0 OID 16419)
+-- Dependencies: 218
+-- Data for Name: gas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.gas (stateid, cost, type) FROM stdin;
+AK	5.003	Regular   
+AK	5.259	Mid-Grade 
+AK	5.444	Premium   
+AK	5.368	Diesel    
+AL	3.356	Regular   
+AL	3.734	Mid-Grade 
+AL	4.106	Premium   
+AL	4.998	Diesel    
+AR	3.291	Regular   
+AR	3.642	Mid-Grade 
+AR	3.991	Premium   
+AR	4.966	Diesel    
+AZ	4.342	Regular   
+AZ	4.667	Mid-Grade 
+AZ	4.93	Premium   
+AZ	5.22	Diesel    
+CA	5.675	Regular   
+CA	5.902	Mid-Grade 
+CA	6.04	Premium   
+CA	6.412	Diesel    
+CO	3.584	Regular   
+CO	3.929	Mid-Grade 
+CO	4.226	Premium   
+CO	5.202	Diesel    
+CT	3.49	Regular   
+CT	4.022	Mid-Grade 
+CT	4.394	Premium   
+CT	5.862	Diesel    
+DE	3.59	Regular   
+DE	4.03	Mid-Grade 
+DE	4.307	Premium   
+DE	5.47	Diesel    
+FL	3.333	Regular   
+FL	3.732	Mid-Grade 
+FL	4.05	Premium   
+FL	5.207	Diesel    
+GA	3.187	Regular   
+GA	3.565	Mid-Grade 
+GA	3.942	Premium   
+GA	4.893	Diesel    
+HI	5.212	Regular   
+HI	5.455	Mid-Grade 
+HI	5.683	Premium   
+HI	6.097	Diesel    
+IA	3.546	Regular   
+IA	3.801	Mid-Grade 
+IA	4.276	Premium   
+IA	5.231	Diesel    
+ID	4.349	Regular   
+ID	4.551	Mid-Grade 
+ID	4.771	Premium   
+ID	5.29	Diesel    
+IL	4.193	Regular   
+IL	4.652	Mid-Grade 
+IL	5.062	Premium   
+IL	5.356	Diesel    
+IN	3.883	Regular   
+IN	4.332	Mid-Grade 
+IN	4.73	Premium   
+IN	5.521	Diesel    
+KS	3.413	Regular   
+KS	3.682	Mid-Grade 
+KS	3.995	Premium   
+KS	5.14	Diesel    
+KY	3.399	Regular   
+KY	3.811	Mid-Grade 
+KY	4.172	Premium   
+KY	5.209	Diesel    
+LA	3.336	Regular   
+LA	3.718	Mid-Grade 
+LA	4.063	Premium   
+LA	4.884	Diesel    
+MA	3.596	Regular   
+MA	4.128	Mid-Grade 
+MA	4.172	Premium   
+MA	5.209	Diesel    
+MD	3.672	Regular   
+MD	4.186	Mid-Grade 
+MD	4.444	Premium   
+MD	5.458	Diesel    
+ME	3.658	Regular   
+ME	4.022	Mid-Grade 
+ME	4.386	Premium   
+ME	5.761	Diesel    
+MI	4.006	Regular   
+MI	4.495	Mid-Grade 
+MI	4.925	Premium   
+MI	5.439	Diesel    
+MN	3.648	Regular   
+MN	3.96	Mid-Grade 
+MN	4.337	Premium   
+MN	5.315	Diesel    
+MO	3.386	Regular   
+MO	3.643	Mid-Grade 
+MO	3.997	Premium   
+MO	5.082	Diesel    
+MS	3.267	Regular   
+MS	3.616	Mid-Grade 
+MS	3.963	Premium   
+MS	4.866	Diesel    
+MT	3.989	Regular   
+MT	4.282	Mid-Grade 
+MT	4.576	Premium   
+MT	5.374	Diesel    
+NC	3.452	Regular   
+NC	3.793	Mid-Grade 
+NC	4.148	Premium   
+NC	5.063	Diesel    
+ND	3.637	Regular   
+ND	3.949	Mid-Grade 
+ND	4.348	Premium   
+ND	5.396	Diesel    
+NE	3.545	Regular   
+NE	3.739	Mid-Grade 
+NE	4.212	Premium   
+NE	5.153	Diesel    
+NH	3.517	Regular   
+NH	3.981	Mid-Grade 
+NH	4.343	Premium   
+NH	5.608	Diesel    
+NJ	3.666	Regular   
+NJ	4.209	Mid-Grade 
+NJ	4.457	Premium   
+NJ	5.153	Diesel    
+NM	3.619	Regular   
+NM	3.953	Mid-Grade 
+NM	4.247	Premium   
+NM	5.036	Diesel    
+NV	5.026	Regular   
+NV	5.273	Mid-Grade 
+NV	5.484	Premium   
+NV	5.449	Diesel    
+NY	3.674	Regular   
+NY	4.11	Mid-Grade 
+NY	4.458	Premium   
+NY	5.766	Diesel    
+OH	3.64	Regular   
+OH	4.053	Mid-Grade 
+OH	4.442	Premium   
+OH	5.449	Diesel    
+OK	3.405	Regular   
+OK	3.722	Mid-Grade 
+OK	3.971	Premium   
+OK	5.022	Diesel    
+OR	5.027	Regular   
+OR	5.266	Mid-Grade 
+OR	5.463	Premium   
+OR	5.655	Diesel    
+PA	3.922	Regular   
+PA	4.283	Mid-Grade 
+PA	4.553	Premium   
+PA	5.935	Diesel    
+RI	3.546	Regular   
+RI	4.154	Mid-Grade 
+RI	4.455	Premium   
+RI	5.774	Diesel    
+SC	3.295	Regular   
+SC	3.667	Mid-Grade 
+SC	4.014	Premium   
+SC	4.973	Diesel    
+SD	3.703	Regular   
+SD	3.874	Mid-Grade 
+SD	4.332	Premium   
+SD	5.259	Diesel    
+TN	3.316	Regular   
+TN	3.688	Mid-Grade 
+TN	4.048	Premium   
+TN	5.055	Diesel    
+TX	3.196	Regular   
+TX	3.565	Mid-Grade 
+TX	3.898	Premium   
+TX	4.771	Diesel    
+UT	4.187	Regular   
+UT	4.396	Mid-Grade 
+UT	4.602	Premium   
+UT	5.211	Diesel    
+VA	3.506	Regular   
+VA	3.929	Mid-Grade 
+VA	4.237	Premium   
+VA	5.175	Diesel    
+VT	3.785	Regular   
+VT	4.314	Mid-Grade 
+VT	4.708	Premium   
+VT	5.79	Diesel    
+WA	4.97	Regular   
+WA	5.227	Mid-Grade 
+WA	5.406	Premium   
+WA	5.731	Diesel    
+WI	3.586	Regular   
+WI	4.007	Mid-Grade 
+WI	4.438	Premium   
+WI	5.132	Diesel    
+WV	3.54	Regular   
+WV	3.805	Mid-Grade 
+WV	4.094	Premium   
+WV	5.371	Diesel    
+WY	3.787	Regular   
+WY	3.998	Mid-Grade 
+WY	4.26	Premium   
+WY	5.419	Diesel    
+\.
+
+
+--
+-- TOC entry 3343 (class 0 OID 16414)
+-- Dependencies: 217
+-- Data for Name: groceries; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.groceries (stateid, cost) FROM stdin;
+HI	556.76
+VT	497.41
+AL	483.24
+NY	482.87
+WV	427.19
+MI	423.33
+SC	411.29
+MA	406.21
+WA	402.08
+PN	401.02
+GA	397.97
+AR	397.39
+MN	395.39
+RI	390.19
+WI	385.97
+DE	380.39
+OR	375.41
+ME	372.21
+CA	370.96
+FL	364.25
+IA	347.05
+OK	346.66
+TN	346.37
+WY	345.62
+NJ	343.77
+MD	343.67
+CT	343.3
+OH	341.48
+NC	341.1
+NE	336.9
+IL	327.31
+MO	327.12
+CO	326.92
+ND	326.66
+LA	325.19
+MT	323.91
+IN	318.03
+KY	315.2
+MS	312.63
+NM	307.79
+AZ	302.8
+VA	298.01
+NV	293.43
+TX	286.64
+SD	286.23
+AK	282.46
+UT	282.23
+ID	281.12
+KS	261.35
+NH	183
+\.
+
+
+--
+-- TOC entry 3341 (class 0 OID 16404)
+-- Dependencies: 215
+-- Data for Name: household; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.household (stateid, averagesize) FROM stdin;
+AL	2.53
+AK	2.78
+AZ	2.65
+AR	2.5
+CA	2.94
+CO	2.6
+CT	2.5
+DE	2.54
+FL	2.62
+GA	2.68
+HI	2.94
+ID	2.66
+IL	2.54
+IN	2.5
+IA	2.4
+KS	2.48
+KY	2.48
+LA	2.59
+ME	2.29
+MD	2.64
+MA	2.5
+MI	2.45
+MN	2.48
+MS	2.59
+MO	2.44
+MT	2.37
+NE	2.44
+NV	2.65
+NH	2.44
+NJ	2.66
+NM	2.59
+NY	2.55
+NC	2.51
+ND	2.29
+OH	2.41
+OK	2.57
+OR	2.49
+PA	2.42
+RI	2.45
+SC	2.53
+SD	2.43
+TN	2.51
+TX	2.83
+UT	3.09
+VT	2.28
+VA	2.6
+WA	2.53
+WV	2.4
+WI	2.38
+WY	2.43
+\.
+
+
+--
+-- TOC entry 3342 (class 0 OID 16409)
+-- Dependencies: 216
+-- Data for Name: rent; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rent (stateid, cost) FROM stdin;
+AL	811
+AK	1240
+AZ	1097
+AR	760
+CA	1586
+CO	1335
+CT	1201
+DE	1150
+FL	1218
+GA	1042
+HI	1651
+ID	887
+IL	1038
+IN	844
+IA	806
+KS	863
+KT	783
+LA	876
+ME	873
+MD	1415
+MA	1336
+MI	892
+MN	1010
+MS	789
+MO	843
+NE	857
+NV	1159
+NH	1145
+NJ	1368
+NM	857
+NY	1315
+NC	932
+ND	828
+OH	825
+OK	818
+OR	1173
+PA	958
+RH	1031
+SC	918
+SD	761
+TN	897
+TX	1082
+UT	1090
+VT	999
+WA	1337
+WV	732
+WI	872
+WY	853
+\.
+
+
+--
+-- TOC entry 3340 (class 0 OID 16399)
+-- Dependencies: 214
+-- Data for Name: state; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.state (stateid, name, population, populationdensity) FROM stdin;
+AL	Alabama	5073187	100
+AK	Alaska	738023	1
+AZ	Arizona	7303398	64
+AR	Arkansas	3030646	58
+CA	California	39995077	257
+CO	Colorado	5922618	57
+CT	Connecticut	3612314	746
+DE	Delaware	1008350	517
+FL	Florida	22085563	412
+GA	Georgia	10916760	190
+HI	Hawaii	1474265	230
+ID	Idaho	1893410	23
+IL	Illinois	12808884	231
+IN	Indiana	6845874	191
+IA	Iowa	3219171	58
+KS	Kansas	2954832	36
+KY	Kentucky	4539130	115
+LA	Louisiana	4682633	108
+ME	Maine	1369159	44
+MD	Maryland	6257958	645
+MA	Massachusetts	7126375	914
+MI	Michigan	10116069	179
+MN	Minnesota	5787008	73
+MS	Mississippi	2960075	63
+MO	Missouri	6188111	90
+MT	Montana	1103187	8
+NE	Nebraska	1988536	26
+NV	Nevada	3185426	29
+NH	New Hampshire	1389741	155
+NJ	New Jersey	9388414	1277
+NM	New Mexico	2129190	18
+NY	New York	20365879	432
+NC	North Carolina	1062016	218
+ND	North Dakota	800394	12
+OH	Ohio	11852036	290
+OK	Oklahoma	4000953	58
+OR	Oregon	4318492	45
+PA	Pennsylvania	13062764	292
+RI	Rhode Island	1106341	1070
+SC	South Carolina	5217037	174
+SD	South Dakota	901165	12
+TN	Tennessee	7023788	170
+TX	Texas	29945493	115
+UT	Utah	3373162	41
+VA	Virginia	8631393	219
+VT	Vermont	646545	70
+WA	Washington	7901429	119
+WV	West Virginia	1781860	74
+WI	Wisconsin	5935064	110
+WY	Wyoming	579495	6
+\.
+
+
+--
+-- TOC entry 3197 (class 2606 OID 16431)
+-- Name: gas gas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.gas
+    ADD CONSTRAINT gas_pkey PRIMARY KEY (stateid, type);
+
+
+--
+-- TOC entry 3195 (class 2606 OID 16437)
+-- Name: groceries groceries_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.groceries
+    ADD CONSTRAINT groceries_pkey PRIMARY KEY (stateid);
+
+
+--
+-- TOC entry 3191 (class 2606 OID 16443)
+-- Name: household household_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.household
+    ADD CONSTRAINT household_pkey PRIMARY KEY (stateid);
+
+
+--
+-- TOC entry 3193 (class 2606 OID 16449)
+-- Name: rent rent_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rent
+    ADD CONSTRAINT rent_pkey PRIMARY KEY (stateid);
+
+
+--
+-- TOC entry 3189 (class 2606 OID 16425)
+-- Name: state state_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.state
+    ADD CONSTRAINT state_pkey PRIMARY KEY (stateid);
+
+
+-- Completed on 2022-11-28 18:52:58
+
+--
+-- PostgreSQL database dump complete
+--
+
+--
+-- Database "postgres" dump
+--
+
+\connect postgres
+
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.0
+-- Dumped by pg_dump version 15.0
+
+-- Started on 2022-11-28 18:52:58
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 2 (class 3079 OID 16384)
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 3316 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+-- Completed on 2022-11-28 18:52:59
+
+--
+-- PostgreSQL database dump complete
+--
+
+-- Completed on 2022-11-28 18:52:59
+
+--
+-- PostgreSQL database cluster dump complete
+--
+
